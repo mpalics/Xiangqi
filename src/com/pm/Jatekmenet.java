@@ -28,6 +28,7 @@ class Mezo {
 	public static int mezotav(Mezo m1, Mezo m2) {
 		return Math.abs(m1.x - m2.x) + Math.abs(m1.y - m2.y);
 	}
+	public String toString() {return "X:" + x + " Y:" + y;}
 	public static boolean kastelyban(Mezo m) { if (m.x > 2 && m.x < 6 && m.y < 3) {return true;} return false;}
 	public static boolean atloslepes(Mezo m1, Mezo m2) {if (Math.abs(m1.x - m2.x) == 1 && Math.abs(m1.y - m2.y) == 1) {return true;} return false;}
 }

@@ -86,4 +86,8 @@ class Tabla implements Serializable {
 		}
 	System.out.print("\n\n");
 	}
+
+	public void debug() {
+
+	}
 }

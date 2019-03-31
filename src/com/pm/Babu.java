@@ -88,13 +88,35 @@ class Bastya extends Tipus {
 	public Bastya() {super("bástya", 'B');}
 	public boolean lephet(Mezo honnan, Mezo hova, Babu cel, Tabla T) {
 		if (Math.abs(honnan.x - hova.x) == 0) {
-			for (int i = honnan.y; i < hova.y-1; i++) {
-				if ( !T.getTabla()[i][hova.x].getTipus().equals(new Ures()) ) {return false;}
+			if (honnan.y < hova.y) {
+				for (int i = honnan.y + 1; i < hova.y; i++) {
+					if (!T.getTabla()[i][hova.x].getTipus().getID().equals("O")) {
+						return false;
+					}
+				}
+			}
+			else {
+				for (int i = honnan.y - 1; i > hova.y; i--) {
+					if (!T.getTabla()[i][hova.x].getTipus().getID().equals("O")) {
+						return false;
+					}
+				}
 			}
 		}
 		if (Math.abs(honnan.y - hova.y) == 0) {
-			for (int i = honnan.x; i < hova.x-1; i++) {
-				if ( !T.getTabla()[hova.y][i].getTipus().equals(new Ures()) ) {return false;}
+			if (honnan.x < hova.x) {
+				for (int i = honnan.x + 1; i < hova.x; i++) {
+					if (!T.getTabla()[hova.y][i].getTipus().getID().equals("O")) {
+						return false;
+					}
+				}
+			}
+			else {
+				for (int i = honnan.x - 1; i > hova.x; i--) {
+					if (!T.getTabla()[hova.y][i].getTipus().getID().equals("O")) {
+						return false;
+					}
+				}
 			}
 		}
 		if (Math.abs(honnan.x - hova.x) == 0 || Math.abs(honnan.y - hova.y) == 0) {return true;}
@@ -105,23 +127,40 @@ class Bastya extends Tipus {
 class Agyu extends Tipus {
 	public Agyu() {super("ágyú", 'A');}
 	public boolean lephet(Mezo honnan, Mezo hova, Babu cel, Tabla T) {
-		if (Math.abs(honnan.x - hova.x) == 0 || Math.abs(honnan.y - hova.y) == 0) {
-			if (cel.getTipus().equals(new Ures())) {
-				return true;
-			}
-			else {
-				if (Math.abs(honnan.x - hova.x) == 0) {
-					for (int i = honnan.y; i < hova.y-1; i++) {
-						if ( !T.getTabla()[i][hova.x].getTipus().equals(new Ures()) ) {return true;}
+		if (!cel.getTipus().getID().equals("O")) {
+			if (Math.abs(honnan.x - hova.x) == 0) {
+				if (honnan.y < hova.y) {
+					for (int i = honnan.y + 1; i < hova.y; i++) {
+						if (!T.getTabla()[i][hova.x].getTipus().getID().equals("O")) {
+							return true;
+						}
 					}
 				}
-				if (Math.abs(honnan.y - hova.y) == 0) {
-					for (int i = honnan.x; i < hova.x-1; i++) {
-						if ( !T.getTabla()[hova.y][i].getTipus().equals(new Ures()) ) {return true;}
+				else {
+					for (int i = honnan.y - 1; i > hova.y; i--) {
+						if (!T.getTabla()[i][hova.x].getTipus().getID().equals("O")) {
+							return true;
+						}
+					}
+				}
+			}
+			if (Math.abs(honnan.y - hova.y) == 0) {
+				if (honnan.x < hova.x) {
+					for (int i = honnan.x + 1; i < hova.x; i++) {
+						if (!T.getTabla()[hova.y][i].getTipus().getID().equals("O")) {
+							return true;
+						}
+					}
+				} else {
+					for (int i = honnan.x - 1; i > hova.x; i--) {
+						if (!T.getTabla()[hova.y][i].getTipus().getID().equals("O")) {
+							return true;
+						}
 					}
 				}
 			}
 		}
+		else {if (Math.abs(honnan.x - hova.x) == 0 || Math.abs(honnan.y - hova.y) == 0) {return true;} }
 		return false;
 	}
 }
