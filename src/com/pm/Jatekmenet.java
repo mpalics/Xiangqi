@@ -28,4 +28,5 @@ class Mezo {
 	public static int mezotav(Mezo m1, Mezo m2) {
 		return Math.abs(m1.x - m2.x) + Math.abs(m1.y - m2.y);
 	}
+	public static boolean kastelyban(Mezo m) { if (m.x > 2 && m.x < 6 && m.y < 3) {return true;} return false;}
 }

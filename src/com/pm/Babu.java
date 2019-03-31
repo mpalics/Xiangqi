@@ -59,7 +59,14 @@ class Generalis extends Tipus {
 
 class Testor extends Tipus {
 	public Testor() {super("testőr", 'T');}
-	public boolean lephet(Mezo honnan, Mezo hova, Babu cel) {return false;}
+	public boolean lephet(Mezo honnan, Mezo hova, Babu cel) {
+		if (Mezo.mezotav(honnan, hova) == 2) {
+			if (Math.abs(honnan.x - hova.x) == 1 && Math.abs(honnan.y - hova.y) == 1 && Mezo.kastelyban(hova)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
 
 class Elefant extends Tipus {
