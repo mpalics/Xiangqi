@@ -71,7 +71,12 @@ class Testor extends Tipus {
 
 class Elefant extends Tipus {
 	public Elefant() {super("elefánt", 'E');}
-	public boolean lephet(Mezo honnan, Mezo hova, Babu cel) {return false;}
+	public boolean lephet(Mezo honnan, Mezo hova, Babu cel) {
+		if (hova.y < 5) {
+			if (Math.abs(honnan.x - hova.x) == 2 && Math.abs(honnan.y - hova.y) == 2) {return true;}
+		}
+		return false;
+	}
 }
 
 class Huszar extends Tipus {
