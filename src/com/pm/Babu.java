@@ -87,6 +87,16 @@ class Huszar extends Tipus {
 class Bastya extends Tipus {
 	public Bastya() {super("bástya", 'B');}
 	public boolean lephet(Mezo honnan, Mezo hova, Babu cel, Tabla T) {
+		if (Math.abs(honnan.x - hova.x) == 0) {
+			for (int i = honnan.y; i < hova.y-1; i++) {
+				if ( !T.getTabla()[i][hova.x].getTipus().equals(new Ures()) ) {return false;}
+			}
+		}
+		if (Math.abs(honnan.y - hova.y) == 0) {
+			for (int i = honnan.x; i < hova.x-1; i++) {
+				if ( !T.getTabla()[hova.y][i].getTipus().equals(new Ures()) ) {return false;}
+			}
+		}
 		if (Math.abs(honnan.x - hova.x) == 0 || Math.abs(honnan.y - hova.y) == 0) {return true;}
 		return false;
 	}
@@ -101,12 +111,12 @@ class Agyu extends Tipus {
 			}
 			else {
 				if (Math.abs(honnan.x - hova.x) == 0) {
-					for (int i = honnan.y; i < hova.y; i++) {
+					for (int i = honnan.y; i < hova.y-1; i++) {
 						if ( !T.getTabla()[i][hova.x].getTipus().equals(new Ures()) ) {return true;}
 					}
 				}
 				if (Math.abs(honnan.y - hova.y) == 0) {
-					for (int i = honnan.x; i < hova.x; i++) {
+					for (int i = honnan.x; i < hova.x-1; i++) {
 						if ( !T.getTabla()[hova.y][i].getTipus().equals(new Ures()) ) {return true;}
 					}
 				}
