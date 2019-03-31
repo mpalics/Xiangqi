@@ -86,7 +86,10 @@ class Huszar extends Tipus {
 
 class Bastya extends Tipus {
 	public Bastya() {super("bástya", 'B');}
-	public boolean lephet(Mezo honnan, Mezo hova, Babu cel) {return false;}
+	public boolean lephet(Mezo honnan, Mezo hova, Babu cel) {
+		if (Math.abs(honnan.x - hova.x) == 0 || Math.abs(honnan.y - hova.y) == 0) {return true;}
+		return false;
+	}
 }
 
 class Agyu extends Tipus {
