@@ -49,7 +49,12 @@ class Gyalog extends Tipus {
 
 class Generalis extends Tipus {
 	public Generalis() {super("generális",'K');}
-	public boolean lephet(Mezo honnan, Mezo hova, Babu cel) {return false;}
+	public boolean lephet(Mezo honnan, Mezo hova, Babu cel) {
+		if (Mezo.mezotav(honnan, hova) == 1) {
+			if (hova.y <= 2 && hova.x >= 3 && hova.x <= 5) {return true;}
+		}
+		return false;
+	}
 }
 
 class Testor extends Tipus {
