@@ -23,18 +23,18 @@ abstract class Tipus implements Serializable {
 	//public Tipus() {id = 'G';}
 	public String getName() {return name;}
 	public String getID() {return String.valueOf(id);}
-	abstract public boolean lephet(Mezo honnan, Mezo hova, Babu cel);
+	public abstract boolean lephet(Mezo honnan, Mezo hova, Babu cel, Tabla T);
 }
 
 class Ures extends Tipus {
 	public Ures() {super("üres",'O');}
-	public boolean lephet(Mezo honnan, Mezo hova, Babu cel) {return false;}
+	public boolean lephet(Mezo honnan, Mezo hova, Babu cel, Tabla T) {return false;}
 	public boolean lephet() {return false;}
 }
 
 class Gyalog extends Tipus {
 	public Gyalog() {super("gyalog",'G');}
-	public boolean lephet(Mezo honnan, Mezo hova, Babu cel) {
+	public boolean lephet(Mezo honnan, Mezo hova, Babu cel, Tabla T) {
 		if (Mezo.mezotav(honnan,hova) == 1) {					//csak 1-et haladhat a táblán
 			if (honnan.y >= 5 && hova.y >= honnan.y) {			//áthaladt a folyón
 				return true;
@@ -49,7 +49,7 @@ class Gyalog extends Tipus {
 
 class Generalis extends Tipus {
 	public Generalis() {super("generális",'K');}
-	public boolean lephet(Mezo honnan, Mezo hova, Babu cel) {
+	public boolean lephet(Mezo honnan, Mezo hova, Babu cel, Tabla T) {
 		if (Mezo.mezotav(honnan, hova) == 1) {
 			if (hova.y <= 2 && hova.x >= 3 && hova.x <= 5) {return true;}
 		}
@@ -59,7 +59,7 @@ class Generalis extends Tipus {
 
 class Testor extends Tipus {
 	public Testor() {super("testőr", 'T');}
-	public boolean lephet(Mezo honnan, Mezo hova, Babu cel) {
+	public boolean lephet(Mezo honnan, Mezo hova, Babu cel, Tabla T) {
 		if (Mezo.mezotav(honnan, hova) == 2) {
 			if (Math.abs(honnan.x - hova.x) == 1 && Math.abs(honnan.y - hova.y) == 1 && Mezo.kastelyban(hova)) {
 				return true;
@@ -71,7 +71,7 @@ class Testor extends Tipus {
 
 class Elefant extends Tipus {
 	public Elefant() {super("elefánt", 'E');}
-	public boolean lephet(Mezo honnan, Mezo hova, Babu cel) {
+	public boolean lephet(Mezo honnan, Mezo hova, Babu cel, Tabla T) {
 		if (hova.y < 5) {
 			if (Math.abs(honnan.x - hova.x) == 2 && Math.abs(honnan.y - hova.y) == 2) {return true;}
 		}
@@ -81,12 +81,12 @@ class Elefant extends Tipus {
 
 class Huszar extends Tipus {
 	public Huszar() {super("huszár", 'H');}
-	public boolean lephet(Mezo honnan, Mezo hova, Babu cel) {return false;}
+	public boolean lephet(Mezo honnan, Mezo hova, Babu cel, Tabla T) {return false;}
 }
 
 class Bastya extends Tipus {
 	public Bastya() {super("bástya", 'B');}
-	public boolean lephet(Mezo honnan, Mezo hova, Babu cel) {
+	public boolean lephet(Mezo honnan, Mezo hova, Babu cel, Tabla T) {
 		if (Math.abs(honnan.x - hova.x) == 0 || Math.abs(honnan.y - hova.y) == 0) {return true;}
 		return false;
 	}
@@ -94,5 +94,24 @@ class Bastya extends Tipus {
 
 class Agyu extends Tipus {
 	public Agyu() {super("ágyú", 'A');}
-	public boolean lephet(Mezo honnan, Mezo hova, Babu cel) {return false;}
+	public boolean lephet(Mezo honnan, Mezo hova, Babu cel, Tabla T) {
+		if (Math.abs(honnan.x - hova.x) == 0 || Math.abs(honnan.y - hova.y) == 0) {
+			if (cel.getTipus().equals(new Ures())) {
+				return true;
+			}
+			else {
+				if (Math.abs(honnan.x - hova.x) == 0) {
+					for (int i = honnan.y; i < hova.y; i++) {
+						if ( !T.getTabla()[i][hova.x].getTipus().equals(new Ures()) ) {return true;}
+					}
+				}
+				if (Math.abs(honnan.y - hova.y) == 0) {
+					for (int i = honnan.x; i < hova.x; i++) {
+						if ( !T.getTabla()[hova.y][i].getTipus().equals(new Ures()) ) {return true;}
+					}
+				}
+			}
+		}
+		return false;
+	}
 }

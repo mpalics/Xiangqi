@@ -14,7 +14,7 @@ class Jatekmenet {
 		Babu cel = x.getBabu(x2, y2);
 		if (!cel.getJatekos()) {throw new HibasLepesSajatException();}
 		if (!valasztott.getJatekos()) {
-			if (!valasztott.getTipus().lephet(honnan, hova, cel)) {throw new HibasLepesException(valasztott);}
+			if (!valasztott.getTipus().lephet(honnan, hova, cel, x)) {throw new HibasLepesException(valasztott);}
 			x.setBabu(x2, y2, valasztott);
 			x.setBabu(x1, y1, new Babu());
 		}

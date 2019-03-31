@@ -33,6 +33,8 @@ class Tabla implements Serializable {
 	public Babu getBabu(Mezo m) {
 			return tabla[m.x][m.y];
 		}
+
+	public Babu[][] getTabla() { return this.tabla; }
 	
 	public void init()
 	{
