@@ -38,6 +38,7 @@ class Main {
 		if (args.length == 1) {
 			filepath = args[0];
 			in = readFile(filepath);
+			in.add("exit");
 		}
 
 		ListIterator<String> iter = in.listIterator();
