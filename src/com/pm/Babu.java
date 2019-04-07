@@ -89,7 +89,7 @@ class Bastya extends Tipus {
 	public boolean lephet(Mezo honnan, Mezo hova, Babu cel, Tabla T) {
 		if (Math.abs(honnan.x - hova.x) == 0) {
 			if (honnan.y < hova.y) {
-				for (int i = honnan.y + 1; i < hova.y; i++) {
+				for (int i = honnan.y + 1; i != hova.y; i++) {
 					if (!T.getTabla()[i][hova.x].getTipus().getID().equals("O")) {
 						return false;
 					}
