@@ -28,7 +28,7 @@ public class Mentes {
 			Tabla T = (Tabla)objectIn.readObject();
 			objectIn.close();
 			System.out.println("Betöltés sikeres.");
-			return new Tabla(0);
+			return T;
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 			ex.printStackTrace();

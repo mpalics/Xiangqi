@@ -3,9 +3,20 @@ package com.pm;
 import java.util.Scanner;
 import java.io.*;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 class Main {
 	public static void clearScreen() {System.out.print("\033[H\033[2J"); System.out.flush();}
+	private static void wait(int milisec) {
+		try
+		{
+			Thread.sleep(milisec);
+		}
+		catch(InterruptedException ex)
+		{
+			Thread.currentThread().interrupt();
+		}
+	}
 	private static ArrayList<String> readFile(String filename)
 	{
 		ArrayList<String> records = new ArrayList<String>();
@@ -52,7 +63,7 @@ class Main {
 			System.out.print(Szinek.PURPLE +"\tXiangqi\n\n");
 			T.kiir();
 			if (filepath == "") { cmd = sc.nextLine().trim().split("\\s"); }
-			else {if (iter.hasNext()) { cmd = iter.next().trim().split("\\s"); } }
+			else {if (iter.hasNext()) { cmd = iter.next().trim().split("\\s"); wait(1000);} }
 
 			if (cmd[0].equals("exit")) {break;}
 			try {
