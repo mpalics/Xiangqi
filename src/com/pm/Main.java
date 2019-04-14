@@ -6,7 +6,7 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 class Main {
-	public static void clearScreen() {System.out.print("\033[H\033[2J"); System.out.flush();}
+	private static void clearScreen() {System.out.print("\033[H\033[2J"); System.out.flush();}
 	private static void wait(int milisec) {
 		try
 		{
@@ -62,7 +62,7 @@ class Main {
 			clearScreen();
 			System.out.print(Szinek.PURPLE +"\tXiangqi\n\n");
 			T.kiir();
-			if (filepath == "") { cmd = sc.nextLine().trim().split("\\s"); }
+			if (filepath.equals("")) { cmd = sc.nextLine().trim().split("\\s"); }
 			else {if (iter.hasNext()) { cmd = iter.next().trim().split("\\s"); wait(1000);} }
 
 			if (cmd[0].equals("exit")) {break;}
