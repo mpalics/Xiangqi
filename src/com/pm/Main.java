@@ -6,6 +6,7 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 class Main {
+	public static Tabla T = new Tabla();
 	private static void clearScreen() {System.out.print("\033[H\033[2J"); System.out.flush();}
 	private static void wait(int milisec) {
 		try
@@ -54,7 +55,6 @@ class Main {
 
 		ListIterator<String> iter = in.listIterator();
 
-		Tabla T = new Tabla();
 		T.init();
 		
 		//FŐCIKLUS -----------------------

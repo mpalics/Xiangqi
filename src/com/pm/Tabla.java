@@ -24,6 +24,7 @@ class Tabla implements Serializable {
 	
 	public void setBabu(Mezo m, Babu b) {
 		tabla[m.y][m.x] = b;
+
 	}
 	
 	public Babu getBabu(int x, int y) {

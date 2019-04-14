@@ -3,7 +3,7 @@ package com.pm;
 class Jatekmenet {
 	public static void parancs(String[] cmd, Tabla x) throws Exception {
 		if (cmd[0].equals("save")) {Mentes.kiment(x);}
-		if (cmd[0].equals("load")) {x = Mentes.betolt();}
+		if (cmd[0].equals("load")) {Mentes.betolt(x);}
 		int x1 = Integer.parseInt(cmd[0]);
 		int y1 = Integer.parseInt(cmd[1]);
 		int x2 = Integer.parseInt(cmd[2]);
@@ -25,10 +25,10 @@ class Mezo {
 	public int x;
 	public int y;
 	public Mezo(int x, int y) {this.x = x; this.y = y;}
-	public static int mezotav(Mezo m1, Mezo m2) {
+	static int mezotav(Mezo m1, Mezo m2) {
 		return Math.abs(m1.x - m2.x) + Math.abs(m1.y - m2.y);
 	}
 	public String toString() {return "X:" + x + " Y:" + y;}
-	public static boolean kastelyban(Mezo m) { if (m.x > 2 && m.x < 6 && m.y < 3) {return true;} return false;}
+	static boolean kastelyban(Mezo m) { if (m.x > 2 && m.x < 6 && m.y < 3) {return true;} return false;}
 	public static boolean atloslepes(Mezo m1, Mezo m2) {if (Math.abs(m1.x - m2.x) == 1 && Math.abs(m1.y - m2.y) == 1) {return true;} return false;}
 }
