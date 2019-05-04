@@ -1,7 +1,5 @@
 package com.pm;
 
-import java.util.Scanner;
-import javax.swing.text.html.parser.*;
 import java.io.*;
 
 class Babu implements Serializable {
@@ -23,6 +21,7 @@ abstract class Tipus implements Serializable {
 	//public Tipus() {id = 'G';}
 	public String getName() {return name;}
 	public String getID() {return String.valueOf(id);}
+	public String toString() {return name;}
 	public abstract boolean lephet(Mezo honnan, Mezo hova, Babu cel, Tabla T);
 }
 
@@ -81,7 +80,7 @@ class Elefant extends Tipus {
 
 class Huszar extends Tipus {
 	public Huszar() {super("huszár", 'H');}
-	public boolean lephet(Mezo honnan, Mezo hova, Babu cel, Tabla T) {return false;}
+	public boolean lephet(Mezo honnan, Mezo hova, Babu cel, Tabla T) {return true;}
 }
 
 class Bastya extends Tipus {

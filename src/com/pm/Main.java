@@ -3,19 +3,46 @@ package com.pm;
 import java.util.Scanner;
 import java.io.*;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 class Main {
 	public static Tabla T = new Tabla();
-	private static void clearScreen() {System.out.print("\033[H\033[2J"); System.out.flush();}
-	private static void wait(int milisec) {
-		try
-		{
-			Thread.sleep(milisec);
+	public static int delay = 200;
+	public static void main(String[] args) {
+		char c;
+		String[] cmd = new String[4];
+		Scanner sc = new Scanner(System.in);
+
+		String filepath = "";
+		ArrayList<String> in = new ArrayList<String>();
+
+		if (args.length == 1) {
+			filepath = args[0];
+			in = readFile(filepath);
+			in.add("exit");
 		}
-		catch(InterruptedException ex)
-		{
-			Thread.currentThread().interrupt();
+
+		ListIterator<String> iter = in.listIterator();
+
+		T.init();
+		Jatekmenet.init();
+		
+		//FŐCIKLUS -----------------------
+		while (true) {
+			clearScreen();
+			System.out.print(Szinek.PURPLE +"\tXiangqi\n\n");
+			T.kiir();
+			if (filepath.equals("")) { cmd = sc.nextLine().trim().split("\\s"); }
+			else {if (iter.hasNext()) { cmd = iter.next().trim().split("\\s"); wait(delay);} }
+
+			//if (cmd[0].equals("exit")) {break;}
+			try {
+				Jatekmenet.parancs(cmd, T);
+			} catch (Exception e) {
+				System.out.println("Hiba:");
+				e.printStackTrace();
+				sc.nextLine();
+			}
+			Mi.lep(T);
 		}
 	}
 	private static ArrayList<String> readFile(String filename)
@@ -39,40 +66,15 @@ class Main {
 			return null;
 		}
 	}
-	public static void main(String[] args) {
-		char c;
-		String[] cmd = new String[4];
-		Scanner sc = new Scanner(System.in);
-
-		String filepath = "";
-		ArrayList<String> in = new ArrayList<String>();
-
-		if (args.length == 1) {
-			filepath = args[0];
-			in = readFile(filepath);
-			in.add("exit");
+	private static void clearScreen() {System.out.print("\033[H\033[2J"); System.out.flush();}
+	private static void wait(int milisec) {
+		try
+		{
+			Thread.sleep(milisec);
 		}
-
-		ListIterator<String> iter = in.listIterator();
-
-		T.init();
-		
-		//FŐCIKLUS -----------------------
-		while (true) {
-			clearScreen();
-			System.out.print(Szinek.PURPLE +"\tXiangqi\n\n");
-			T.kiir();
-			if (filepath.equals("")) { cmd = sc.nextLine().trim().split("\\s"); }
-			else {if (iter.hasNext()) { cmd = iter.next().trim().split("\\s"); wait(1000);} }
-
-			if (cmd[0].equals("exit")) {break;}
-			try {
-				Jatekmenet.parancs(cmd, T);
-			} catch (Exception e) {
-				System.out.println("Hiba:" + e.getMessage());
-				sc.nextLine();
-			}
-			Mi.lep(T);
+		catch(InterruptedException ex)
+		{
+			Thread.currentThread().interrupt();
 		}
 	}
 }

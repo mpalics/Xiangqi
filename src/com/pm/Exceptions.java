@@ -10,3 +10,8 @@ class HibasLepesSajatException extends Exception {
 	public HibasLepesSajatException() {}
 	public String getMessage() {return "Saját figurát nem lehet kiütni!";}
 }
+
+class NincsParancsException extends Exception {
+	public NincsParancsException() {}
+	public String getMessage() {return "Nincs ilyen parancs.";}
+}

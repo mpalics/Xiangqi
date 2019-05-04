@@ -1,7 +1,5 @@
 package com.pm;
 
-import java.util.Scanner;
-import java.util.*;
 import java.io.Serializable;
 
 class Tabla implements Serializable {
@@ -32,7 +30,7 @@ class Tabla implements Serializable {
 	}
 	
 	public Babu getBabu(Mezo m) {
-			return tabla[m.x][m.y];
+			return tabla[m.y][m.x];
 		}
 
 	public Babu[][] getTabla() { return this.tabla; }
